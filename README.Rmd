@@ -286,8 +286,6 @@ cl <- drake::drake_cache_log()
 readr::write_tsv(cl, "cache_log/02a-after-RStudio-job.log")
 ```
 
-Notice that, this time, `import_data()` is correctly listed as an import in our cache.
-
 Running make again will now correctly build only the unbuilt targets.
 
 ```{r}
