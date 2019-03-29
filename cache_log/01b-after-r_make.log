@@ -1,0 +1,26 @@
+hash	type	name
+4e6e4d4c0bcda263	target	coef_regression1_large
+5ad25785a84e0cac	target	coef_regression1_small
+b2662785d55b28c1	target	coef_regression2_large
+23c66b36be56905b	target	coef_regression2_small
+a7afcfc52a180687	target	data
+a44bdd51b1e985e3	import	import_data
+7b6504d4c0dcceab	target	large
+503a24ae76dad431	import	knitr::knit
+e48820305a44c4d2	import	file data/mtcars.csv
+7a456ee58df699be	import	file report.Rmd
+fa9a77f4ba63574e	target	file report.md
+db84c9f752635a13	import	random_rows
+21935c86f12692e2	import	reg1
+69ade4b78f15a3f9	import	reg2
+e1501ed9d62b846e	target	regression1_large
+2a400716e73eac8f	target	regression1_small
+fe8ac4561279fb68	target	regression2_large
+c0f94be64233efe8	target	regression2_small
+f3bb623354b52fa1	target	report
+9b31e33768015e24	import	simulate
+78414659cd5e9997	target	small
+065f93613f1cb914	target	summ_regression1_large
+2362318068e2692d	target	summ_regression1_small
+c2c95619e31d7fa8	target	summ_regression2_large
+c7dc974fa996335f	target	summ_regression2_small
