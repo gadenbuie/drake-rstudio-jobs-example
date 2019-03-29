@@ -1,6 +1,5 @@
 hash type name
 a7afcfc52a180687 target data
-a44bdd51b1e985e3 import import_data
 7b6504d4c0dcceab target large
 503a24ae76dad431 import knitr::knit
 e48820305a44c4d2 import file data/mtcars.csv
@@ -8,9 +7,9 @@ e48820305a44c4d2 import file data/mtcars.csv
 db84c9f752635a13 import random_rows
 21935c86f12692e2 import reg1
 69ade4b78f15a3f9 import reg2
-72b5a6802f8a5264 target regression1_large
-4836a115e7d1e2c2 target regression1_small
-b95c5b5c4dc64e08 target regression2_large
-77b7266d12d7258e target regression2_small
+d52a3fcb567fb4cb target regression1_large
+a3e0450f2ec8c730 target regression1_small
+600648db400db006 target regression2_large
+eafd3f8824ab76a9 target regression2_small
 9b31e33768015e24 import simulate
 78414659cd5e9997 target small

@@ -1,9 +1,7 @@
 library(drake)
 library(readr)
 
-import_data <- function(infile) {
-  suppressMessages(read_csv(infile))
-}
+source("import_data.R")
 
 # Pick a random subset of n rows from a dataset
 random_rows <- function(data, n){
@@ -57,6 +55,7 @@ plan <- drake_plan(
   )
 )
 prefix <- paste(stringi::stri_rand_strings(1, 10))
+message(prefix)
 
 config <- drake_config(plan)
 vis_drake_graph(config, file = paste0(prefix, ".png")) # requires webshot::install_phantomjs() first

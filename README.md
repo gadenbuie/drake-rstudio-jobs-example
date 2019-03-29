@@ -20,7 +20,7 @@ callr::rscript("make.R", show = TRUE)
 
 ### Step 1
 
-![](BMBmeBFtLK.png)
+![](Qo5K41KcCy.png)
 
 `console.log`
 
@@ -53,7 +53,7 @@ callr::rscript("make.R", show = TRUE)
 
 ### Step 2
 
-![](1TQxNd1Z2Q.png)
+![](FxzLUU8vWM.png)
 
 `console.log`
 
@@ -112,7 +112,7 @@ callr::rscript("make.R", show = TRUE)
 
 ### Step 1
 
-![](fxF3uoG9oC.png)
+![](b1McGwZTEk.png)
 
 `console.log`
 
@@ -128,6 +128,37 @@ callr::rscript("make.R", show = TRUE)
 
     hash type name
     a7afcfc52a180687 target data
+    7b6504d4c0dcceab target large
+    503a24ae76dad431 import knitr::knit
+    e48820305a44c4d2 import file data/mtcars.csv
+    7a456ee58df699be import file report.Rmd
+    db84c9f752635a13 import random_rows
+    21935c86f12692e2 import reg1
+    69ade4b78f15a3f9 import reg2
+    d52a3fcb567fb4cb target regression1_large
+    a3e0450f2ec8c730 target regression1_small
+    600648db400db006 target regression2_large
+    eafd3f8824ab76a9 target regression2_small
+    9b31e33768015e24 import simulate
+    78414659cd5e9997 target small
+
+### Step 2
+
+This time `data` is remade because the dependencies changed when
+`import_data()` was sourced into a different environment. Oddly, the
+target `regression1_small` appears in `outdated(config)` but apparently
+isn’t out of date once the `data` is remade.
+
+![](RbhF9FW4q2.png)
+
+`console.log`
+
+    target data
+
+`cache.log`
+
+    hash type name
+    a7afcfc52a180687 target data
     a44bdd51b1e985e3 import import_data
     7b6504d4c0dcceab target large
     503a24ae76dad431 import knitr::knit
@@ -136,16 +167,16 @@ callr::rscript("make.R", show = TRUE)
     db84c9f752635a13 import random_rows
     21935c86f12692e2 import reg1
     69ade4b78f15a3f9 import reg2
-    72b5a6802f8a5264 target regression1_large
-    4836a115e7d1e2c2 target regression1_small
-    b95c5b5c4dc64e08 target regression2_large
-    77b7266d12d7258e target regression2_small
+    d52a3fcb567fb4cb target regression1_large
+    a3e0450f2ec8c730 target regression1_small
+    600648db400db006 target regression2_large
+    eafd3f8824ab76a9 target regression2_small
     9b31e33768015e24 import simulate
     78414659cd5e9997 target small
 
-### Step 2
+### Step 3
 
-![](YpqJ9l9iJ9.png)
+![](pwNOjiulGL.png)
 
 `console.log`
 
@@ -176,10 +207,10 @@ callr::rscript("make.R", show = TRUE)
     db84c9f752635a13 import random_rows
     21935c86f12692e2 import reg1
     69ade4b78f15a3f9 import reg2
-    72b5a6802f8a5264 target regression1_large
-    4836a115e7d1e2c2 target regression1_small
-    b95c5b5c4dc64e08 target regression2_large
-    77b7266d12d7258e target regression2_small
+    d52a3fcb567fb4cb target regression1_large
+    a3e0450f2ec8c730 target regression1_small
+    600648db400db006 target regression2_large
+    eafd3f8824ab76a9 target regression2_small
     f3bb623354b52fa1 target report
     9b31e33768015e24 import simulate
     78414659cd5e9997 target small
@@ -190,5 +221,5 @@ callr::rscript("make.R", show = TRUE)
 
 ## Results
 
-Both of the above work as expected — as long as `make.R` doesn’t source
-any external functions, everything exists in the same environment\!
+Sourcing inside scripts launched as background RStudio jobs might be
+problematic.

@@ -44,13 +44,13 @@ log_file <- function(key, step = 1) {
 ```
 
 ```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("BMBmeBFtLK", 1)
+log_file("Qo5K41KcCy", 1)
 ```
 
 ### Step 2
 
 ```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("1TQxNd1Z2Q", 2)
+log_file("FxzLUU8vWM", 2)
 ```
 
 ## RStudio Job Launcher
@@ -69,16 +69,24 @@ callr::rscript("make.R", show = TRUE)
 ### Step 1
 
 ```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("fxF3uoG9oC", 1)
+log_file("b1McGwZTEk", 1)
 ```
 
 ### Step 2
 
+This time `data` is remade because the dependencies changed when `import_data()` was sourced into a different environment.
+Oddly, the target `regression1_small` appears in `outdated(config)` but apparently isn't out of date once the `data` is remade.
+
 ```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("YpqJ9l9iJ9", 2)
+log_file("RbhF9FW4q2", 1)
 ```
 
+### Step 3
+
+```{r eval=TRUE, echo=FALSE, results='asis'}
+log_file("pwNOjiulGL", 2)
+```
 
 ## Results
 
-Both of the above work as expected --- as long as `make.R` doesn't source any external functions, everything exists in the same environment!
+Sourcing inside scripts launched as background RStudio jobs might be problematic.
