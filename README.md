@@ -36,8 +36,8 @@ evaluated, but it is in the global environment.
 ``` r
 cat(readLines("global.out"), sep = "\n")
 ## emitProgress
+## inside_inner
 ## sourceWithProgress
-## x
 ```
 
 #### Session Info
