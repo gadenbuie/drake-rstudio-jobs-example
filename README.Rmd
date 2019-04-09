@@ -45,3 +45,10 @@ Notice that `inside_inner` is not in the environment where `outer.R` is evaluate
 ```{r}
 cat(readLines("global.out"), sep = "\n")
 ```
+
+
+#### Session Info
+
+```{r}
+sessioninfo::session_info()
+```
