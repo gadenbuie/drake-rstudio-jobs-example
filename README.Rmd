@@ -6,87 +6,42 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  eval = FALSE,
+  eval = TRUE,
   collapse = TRUE,
   comment = "##"
 )
 ```
 
-Could we try something even simpler? What the plan and all dependencies are contained in single file [make.R](make.R)?
+We have a script called `inner.R`.
 
-Note that `make.R` includes logic to build up to and including the regression targets if they are out of date, otherwise to build everything.
+```r
+inside_inner <- 1
+```
 
-## Standard Setup
+And another script called `outer.R`.
 
-Standard `make()` in fresh session/cache.
+```r
+source("inner.R")
+inside_outer <- 2
+cat(ls(), sep = "\n", file = "outer.out")
+
+cat(ls(envir = .GlobalEnv), sep = "\n", file = "global.out")
+```
+
+Running `outer.R` as an RStudio job:
+
+```{r eval=FALSE}
+rstudioapi::jobRunScript("outer.R", workingDir = getwd(), exportEnv = NULL)
+```
+
+Yeilding the following results in `outer.out`
 
 ```{r}
-if (dir.exists(".drake")) unlink(".drake", recursive = TRUE)
-callr::rscript("make.R", show = TRUE)
-callr::rscript("make.R", show = TRUE)
+cat(readLines("outer.out"), sep = "\n")
 ```
 
-### Step 1
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file <- function(key, step = 1) {
-  cat("\n\n![](", key, ".png)", sep = "")
-  
-  cat("\n\n`console.log`\n\n```\n")
-  cat(readLines(paste0(key, "-step", step, "-console.log")), sep = "\n")
-  cat("\n```\n")
-  
-  cat("\n\n`cache.log`\n\n```\n")
-  cat(readLines(paste0(key, "-step", step, "-cache.log")), sep = "\n")
-  cat("\n```\n")
-  
-}
-```
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("Qo5K41KcCy", 1)
-```
-
-### Step 2
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("FxzLUU8vWM", 2)
-```
-
-## RStudio Job Launcher
-
-What do the results look like if you run the following with a fresh session and cache?
+Notice that `inside_inner` is not in the environment where `outer.R` is evaluated, but it is in the global environment.
 
 ```{r}
-if (dir.exists(".drake")) unlink(".drake", recursive = TRUE)
-# Step 1
-rstudioapi::jobRunScript("make.R", workingDir = getwd())
-
-# Step 2
-callr::rscript("make.R", show = TRUE)
+cat(readLines("global.out"), sep = "\n")
 ```
-
-### Step 1
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("b1McGwZTEk", 1)
-```
-
-### Step 2
-
-This time `data` is remade because the dependencies changed when `import_data()` was sourced into a different environment.
-Oddly, the target `regression1_small` appears in `outdated(config)` but apparently isn't out of date once the `data` is remade.
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("RbhF9FW4q2", 1)
-```
-
-### Step 3
-
-```{r eval=TRUE, echo=FALSE, results='asis'}
-log_file("pwNOjiulGL", 2)
-```
-
-## Results
-
-Sourcing inside scripts launched as background RStudio jobs might be problematic.

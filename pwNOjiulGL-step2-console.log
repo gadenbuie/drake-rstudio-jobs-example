@@ -1,9 +1,0 @@
-target coef_regression2_small
-target summ_regression1_large
-target summ_regression1_small
-target summ_regression2_large
-target summ_regression2_small
-target coef_regression1_large
-target coef_regression1_small
-target coef_regression2_large
-target report
